@@ -16,6 +16,11 @@ body{
 .vglasses__left .col-4{
     align-self: center;
 }
+
+.vglasses__left img:hover{
+    cursor: pointer;
+}
+
 .vglasses__items{
     cursor: pointer;
 }
@@ -29,7 +34,6 @@ body{
     background-position: center top;
     background-size: cover;
     height: 600px;
-    
 }
 
 .vglasses__model img{

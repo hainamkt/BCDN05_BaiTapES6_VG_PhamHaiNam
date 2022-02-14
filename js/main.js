@@ -10,47 +10,29 @@ let dataGlasses = [
     { id: "G9", src: "./img/g9.jpg", virtualImg: "./img/v9.png", brand: "Coarch", name: "MIDNIGHT VIXEN REMIX", color: "Blue, Black", price: 120, description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit consequatur soluta ad aut laborum amet." }
 ];
 
-let showAllGlasses = () => {
+let listGlasses = () => {
     let content = "";
-    for (let i in dataGlasses) {
-        content += `
-        <img src="${dataGlasses[i].virtualImg}" class="col-4 mt-5 imgGlasses" alt="">
-        `;
-    }
+    dataGlasses.map((glass) => {
+        content += `<img src="${glass.src}" class= "col-4 mt-4 vglasses__img" alt="">`
+    })
     document.getElementById("vglassesList").innerHTML = content;
 }
-showAllGlasses();
+listGlasses();
 
-let arrGlasses = document.querySelectorAll(".imgGlasses");
-arrGlasses.forEach((value, i) => {
-    arrGlasses[i].addEventListener("click", () => {
-        showModelGlasses(i);
-        document.querySelector(".btn-before").addEventListener("click", () => {
-            i--;
-            if (i >= 0 && i < arrGlasses.length) {
-                showModelGlasses(i);
-            } else {
-                i = 0;
-            }
-        });
-        document.querySelector(".btn-after").addEventListener("click", () => {
-            i++;
-            if (i >= 0 && i < arrGlasses.length) {
-                showModelGlasses(i);
-            } else {
-                i = arrGlasses.length - 1;
-            }
-        });
-
+let arrayGlasses = document.querySelectorAll(".vglasses__img");
+arrayGlasses.forEach((value, index) => {
+    arrayGlasses[index].addEventListener("click", () => {
+        modelGlass(index);
     })
-});
+})
 
-let showModelGlasses = (i) => {
-    document.querySelector(".vglasses__model").innerHTML = `<img src="${arrGlasses[i].src}" alt="">`;
+let modelGlass = (id) => {
+    document.querySelector(".vglasses__model").innerHTML = `<img src="${dataGlasses[id].virtualImg}" alt="">`;
     document.querySelector(".vglasses__info").style.display = "block";
     document.querySelector(".vglasses__info").innerHTML = `
-        <h3>${dataGlasses[i].name} - ${dataGlasses[i].brand} (${dataGlasses[i].color})</h3>
-        <buton class="btn-danger p-1">${dataGlasses[i].price}$</buton> <span class="text-success p-1"> Stocking</span>
-        <p>${dataGlasses[i].description}</p>
+        <h3>${dataGlasses[id].name} - ${dataGlasses[id].brand} (${dataGlasses[id].color})</h3>
+        <button class="btn-danger p-1">${dataGlasses[id].price}$</button>
+        <span class="text-success p-1"> Stocking</span>
+        <p>${dataGlasses[id].description}</p>
         `
 }
